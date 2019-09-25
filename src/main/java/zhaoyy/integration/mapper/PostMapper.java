@@ -12,7 +12,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author zhaoyy
  * @since 2019-09-24
  */
-@Mapper
 public interface PostMapper extends BaseMapper<Post> {
 
 }

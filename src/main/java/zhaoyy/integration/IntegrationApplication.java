@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author zhaoyy
  */
 @EnableTransactionManagement
-@MapperScan("zhaoyy.integration.mapper")
+@MapperScan(value = "zhaoyy.integration.mapper")
 @SpringBootApplication
 public class IntegrationApplication {
     public static void main(String[] args) {

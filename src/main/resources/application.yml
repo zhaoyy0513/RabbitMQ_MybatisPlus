@@ -1,3 +1,42 @@
+server:
+  port: 8888
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/campus?useSSL=false&useAffectedRows=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: admin
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      db-type: mysql
+  session:
+    timeout: 30m
+  http:
+    encoding:
+      charset: utf-8
+      force: true
+      enabled: true
+  resources:
+    static-locations: classpath:/static/
+  mvc:
+    static-path-pattern: /static/**
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+  rabbitmq:
+    addresses: 127.0.0.1:5672
+    connection-timeout: 15000
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 5
+        max-concurrency: 10
+    password: admin
+    username: admin
+    virtual-host: /
+
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: zhaoyy.integration.entity
@@ -5,13 +44,6 @@ mybatis-plus:
     #当selectByMap返回的实体某个字段为空时，返回null，如果不设置这个则实体字段为空时就不返回该字段，这是不符合逻辑的，所以加上
     call-setters-on-nulls: true
 
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/campus?useSSL=false&useAffectedRows=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: admin
-    type: com.alibaba.druid.pool.DruidDataSource
-    platform: mysql
-server:
-  port: 8888
+
+
+

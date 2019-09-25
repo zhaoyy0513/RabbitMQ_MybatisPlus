@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zhaoyy.integration.mapper.UserMapper">
+
+    <select id="listAllUser" resultType="zhaoyy.integration.dto.UserDTO">
+        select
+        u.id, user_role, user_id, user_name, user_pwd, user_phone, user_college, problem_id, problem_answer, user_sex, user_img, unread_message, post_collection_num, focus_number,
+        r.role_name as roleName
+        from user u
+        left join role r on u.user_role = r.role_id
+    </select>
+</mapper>

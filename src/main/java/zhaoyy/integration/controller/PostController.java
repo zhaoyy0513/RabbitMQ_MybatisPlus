@@ -2,13 +2,16 @@ package zhaoyy.integration.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import zhaoyy.integration.entity.Post;
 import zhaoyy.integration.service.IPostService;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -25,19 +28,9 @@ public class PostController {
     @Resource
     private IPostService postService;
 
-//    @Autowired
-//    public PostController(IPostService postService) {
-//        this.postService = postService;
-//    }
-
-    @RequestMapping("/getAllPosts")
-    public ResponseEntity getAllPosts(){
+    @GetMapping
+    public ResponseEntity listPosts(){
         return ResponseEntity.ok().body(postService.getAllPost());
-    }
-
-    @RequestMapping("/getAllPost")
-    public ResponseEntity getAllPost(){
-        return ResponseEntity.ok().body(postService.getMap(new QueryWrapper<Post>().lambda().ne(Post::getId,0)));
     }
 
 }
