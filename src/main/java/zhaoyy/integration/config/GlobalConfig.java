@@ -1,5 +1,6 @@
 package zhaoyy.integration.config;
 
+import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @createTime 2019/9/20 0020 13:49
  */
 @Configuration
-public class PaginationConfig {
+public class GlobalConfig {
     /**
      * 分页配置
      *
@@ -25,4 +26,18 @@ public class PaginationConfig {
         page.setDialectType("mysql");
         return page;
     }
+
+    /**
+    * 乐观锁配置
+    *
+    * @param
+    * @return com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor
+    * @author zhaoyuyang
+    * @since 2019/9/26 0026 9:41
+    */
+    @Bean
+    public OptimisticLockerInterceptor optimisticLockerInterceptor(){
+        return new OptimisticLockerInterceptor();
+    }
+
 }

@@ -17,5 +17,5 @@ import java.util.List;
  * @since 2019-09-25
  */
 public interface UserMapper extends BaseMapper<User> {
-    IPage<UserDTO> listAllUser(Page<User> page);
+    IPage<UserDTO> listAllUser(Page<UserDTO> page);
 }

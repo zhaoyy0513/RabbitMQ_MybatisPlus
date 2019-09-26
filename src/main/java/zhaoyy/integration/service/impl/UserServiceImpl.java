@@ -27,7 +27,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     UserMapper mapper;
 
     @Override
-    public IPage<UserDTO> listAllUser(Page<User> page) {
+    public IPage<UserDTO> listAllUser(Page<UserDTO> page) {
         return mapper.listAllUser(page);
     }
 }

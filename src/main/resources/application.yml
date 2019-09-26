@@ -3,8 +3,11 @@ server:
 
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/campus?useSSL=false&useAffectedRows=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    #开发环境用p6spy打印sql的信息，用下面的配置
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://localhost:3306/campus?useSSL=false&useAffectedRows=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+#   driver-class-name: com.mysql.cj.jdbc.Driver
+#   url: jdbc:mysql://localhost:3306/campus?useSSL=false&useAffectedRows=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
     password: admin
     type: com.alibaba.druid.pool.DruidDataSource

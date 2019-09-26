@@ -33,7 +33,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity listUser(@RequestParam(required = false,defaultValue = "1")int current,
                                    @RequestParam(required = false,defaultValue = "5")int size){
-        Page<User> page = new Page<>(current,size);
+        Page<UserDTO>  page = new Page<>(current,size);
         IPage<UserDTO> dto = userService.listAllUser(page);
         return ResponseEntity.ok().body(dto);
     }

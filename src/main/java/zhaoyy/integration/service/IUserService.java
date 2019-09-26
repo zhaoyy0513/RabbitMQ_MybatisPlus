@@ -21,10 +21,10 @@ public interface IUserService extends IService<User> {
     /**
     * 获取所有用户
     *
-    * @param
+    * @param page
     * @return java.util.List<zhaoyy.integration.dto.UserDTO>
     * @author zhaoyuyang
     * @since 2019/9/25 0025 17:59
     */
-    IPage<UserDTO> listAllUser(Page<User> page);
+    IPage<UserDTO>  listAllUser(Page<UserDTO> page);
 }
