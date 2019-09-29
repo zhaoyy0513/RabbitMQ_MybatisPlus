@@ -36,6 +36,6 @@ public interface IFocusService extends IService<Focus> {
    * @author zhaoyuyang
    * @since 2019/9/25 0025 17:41
    */
-    IPage getAllFocus(Page<Focus> page);
+    IPage<FocusDTO> getAllFocus(Page<FocusDTO> page);
 
 }

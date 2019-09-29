@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import zhaoyy.integration.constants.enums.DeletedEnum;
+import zhaoyy.integration.dto.FocusDTO;
 import zhaoyy.integration.entity.Focus;
+import zhaoyy.integration.entity.User;
 import zhaoyy.integration.exception.BaseWebException;
 import zhaoyy.integration.rabbitMq.producer.FocusProducerService;
 import zhaoyy.integration.service.IFocusService;
@@ -58,10 +60,24 @@ public class FocusController {
     public ResponseEntity listFocus(@RequestParam(required = false,defaultValue = "1")int current,
                                     @RequestParam(required = false,defaultValue = "5")int size)
     {
-        Page<Focus> page = new Page<>(current,size);
-        IPage pages = focusService.getAllFocus(page);
+        Page<FocusDTO> page = new Page<>(current,size);
+        IPage<FocusDTO> pages = focusService.getAllFocus(page);
         focusProducerService.listAllFocus();  //给MQ队列发消息
         return ResponseEntity.ok().body(pages);
+    }
+
+    @PutMapping
+    public ResponseEntity updateFocus(@RequestBody JSONObject jsonObject){
+        Integer id = jsonObject.getInteger("id");
+        Integer userId = jsonObject.getInteger("userId");
+        String focusId = jsonObject.getString("focusId");
+        Focus focus = new Focus();
+        focus.setId(id);
+        focus.setUserId(userId);
+        focus.setFocusedId(focusId);
+        //查看乐观锁是否成功
+        focus.setVersion(1);
+        return ResponseEntity.ok().body(focusService.updateById(focus));
     }
 
 }

@@ -4,8 +4,22 @@
 
 
     <insert id="insertGetId" useGeneratedKeys="true" keyProperty="id">
-        insert into focus (user_id, focused_id, deleted)
-        VALUES (#{userId},#{focusedId},#{deleted})
+        insert into focus (user_id, focused_id, deleted, version)
+        VALUES (#{userId}, #{focusedId}, #{deleted}, #{verson})
     </insert>
+
+    <select id="listFocus" resultType="zhaoyy.integration.dto.FocusDTO">
+        select f.user_id,
+               u.user_name as userName,
+               r.role_name as roleName,
+               u.user_college as userCollege,
+               f.focused_id,
+               f.deleted
+        from focus f
+                 left join user u on f.user_id = u.id
+                 left join role r on r.role_id = u.user_role
+        where f.id != 0
+        order by u.id
+    </select>
 
 </mapper>

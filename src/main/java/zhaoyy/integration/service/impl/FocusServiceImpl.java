@@ -1,5 +1,6 @@
 package zhaoyy.integration.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -41,10 +42,10 @@ public class FocusServiceImpl extends ServiceImpl<FocusMapper, Focus> implements
 
     @Transactional(readOnly=true,rollbackFor = Exception.class)
     @Override
-    public IPage getAllFocus(Page<Focus> page) {
-        //逆序查询所有Focus
-        QueryWrapper<Focus> wrapper = new QueryWrapper<>();
-        wrapper.orderByDesc("id");
-        return mapper.selectPage(page,wrapper);
+    public IPage<FocusDTO> getAllFocus(Page<FocusDTO> page) {
+        //查询所有Focus
+        IPage<FocusDTO> focusDTOIPage = mapper.listFocus(page);
+        System.out.println("service"+ JSONObject.toJSONString(focusDTOIPage.getRecords()));
+        return mapper.listFocus(page);
     }
 }

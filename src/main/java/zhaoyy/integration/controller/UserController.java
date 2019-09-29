@@ -1,14 +1,12 @@
 package zhaoyy.integration.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import zhaoyy.integration.dto.UserDTO;
 import zhaoyy.integration.entity.User;
 import zhaoyy.integration.service.IUserService;
@@ -37,4 +35,9 @@ public class UserController {
         IPage<UserDTO> dto = userService.listAllUser(page);
         return ResponseEntity.ok().body(dto);
     }
+
+//    @PostMapping
+//    public ResponseEntity insert(@RequestBody JSONObject jsonObject){
+//
+//    }
 }

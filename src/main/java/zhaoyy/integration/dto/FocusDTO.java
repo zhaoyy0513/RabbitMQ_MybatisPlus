@@ -9,8 +9,8 @@ import zhaoyy.integration.entity.Focus;
  */
 @Data
 public class FocusDTO extends Focus {
-    Integer userRole;
-    String focusName;
+    String roleName;
+    String userName;
     String userCollege;
 
     public FocusDTO(Focus focus) {
